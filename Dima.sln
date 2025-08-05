@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dima.Core", "Dima.Core\Dima.Core.csproj", "{48F23443-159A-4B92-AF0F-19B87C11C5F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dima.Api", "Dima.Api\Dima.Api.csproj", "{02305C28-A1B0-422A-893A-375C0FCA383D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{48F23443-159A-4B92-AF0F-19B87C11C5F0}.Release|x64.Build.0 = Release|Any CPU
 		{48F23443-159A-4B92-AF0F-19B87C11C5F0}.Release|x86.ActiveCfg = Release|Any CPU
 		{48F23443-159A-4B92-AF0F-19B87C11C5F0}.Release|x86.Build.0 = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|x64.Build.0 = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Debug|x86.Build.0 = Debug|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|x64.ActiveCfg = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|x64.Build.0 = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|x86.ActiveCfg = Release|Any CPU
+		{02305C28-A1B0-422A-893A-375C0FCA383D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
