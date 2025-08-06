@@ -1,33 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorio\\Dima\\Dima.Api\\Dima.Api.csproj": {}
+    "C:\\Git\\Dima\\Dima.Api\\Dima.Api.csproj": {}
   },
   "projects": {
-    "D:\\Repositorio\\Dima\\Dima.Api\\Dima.Api.csproj": {
+    "C:\\Git\\Dima\\Dima.Api\\Dima.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorio\\Dima\\Dima.Api\\Dima.Api.csproj",
+        "projectUniqueName": "C:\\Git\\Dima\\Dima.Api\\Dima.Api.csproj",
         "projectName": "Dima.Api",
-        "projectPath": "D:\\Repositorio\\Dima\\Dima.Api\\Dima.Api.csproj",
-        "packagesPath": "C:\\Users\\Hugo Rezende Martins\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorio\\Dima\\Dima.Api\\obj\\",
+        "projectPath": "C:\\Git\\Dima\\Dima.Api\\Dima.Api.csproj",
+        "packagesPath": "C:\\Nuget",
+        "outputPath": "C:\\Git\\Dima\\Dima.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hugo Rezende Martins\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\DEV-10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repositorio\\Dima\\Dima.Core\\Dima.Core.csproj": {
-                "projectPath": "D:\\Repositorio\\Dima\\Dima.Core\\Dima.Core.csproj"
+              "C:\\Git\\Dima\\Dima.Core\\Dima.Core.csproj": {
+                "projectPath": "C:\\Git\\Dima\\Dima.Core\\Dima.Core.csproj"
               }
             }
           }
@@ -51,6 +58,16 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.8, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -76,26 +93,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repositorio\\Dima\\Dima.Core\\Dima.Core.csproj": {
+    "C:\\Git\\Dima\\Dima.Core\\Dima.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorio\\Dima\\Dima.Core\\Dima.Core.csproj",
+        "projectUniqueName": "C:\\Git\\Dima\\Dima.Core\\Dima.Core.csproj",
         "projectName": "Dima.Core",
-        "projectPath": "D:\\Repositorio\\Dima\\Dima.Core\\Dima.Core.csproj",
-        "packagesPath": "C:\\Users\\Hugo Rezende Martins\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorio\\Dima\\Dima.Core\\obj\\",
+        "projectPath": "C:\\Git\\Dima\\Dima.Core\\Dima.Core.csproj",
+        "packagesPath": "C:\\Nuget",
+        "outputPath": "C:\\Git\\Dima\\Dima.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Hugo Rezende Martins\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\DEV-10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -135,7 +159,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

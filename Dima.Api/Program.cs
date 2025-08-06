@@ -1,7 +1,19 @@
+using Dima.Api.Data;
 using Dima.Core.Enums;
 using Dima.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var cnnStr = builder
+    .Configuration.
+    GetConnectionString("DefaultConnection") ?? string.Empty;
+
+builder.Services.AddDbContext<AppDbContext>(x =>
+{
+    x.UseSqlServer(cnnStr);
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<Handler>();
 builder.Services.AddSwaggerGen(s => 
@@ -11,9 +23,9 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapPost("/", (Request request, Handler handler) => handler.Handle(request))
-    .WithName("Transaction: Create")
-    .WithSummary("Cria nova transação")
+app.MapPost("/v1/categories", (Request request, Handler handler) => handler.Handle(request))
+    .WithName("Categories: Create")
+    .WithSummary("Cria umna nova categoria")
     .Produces<Response>();
 
 app.Run();
@@ -21,11 +33,7 @@ app.Run();
 public class Request
 {
     public string Title { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-    public ETransactionType Type { get; set; } = ETransactionType.Withdraw;
-    public decimal Amount { get; set; }
-    public Category Category { get; set; } = null!;
-    public string UserId { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }
 
 public class Response
@@ -35,14 +43,23 @@ public class Response
 }
 
 
-public class Handler
+public class Handler(AppDbContext context)
 {
     public Response Handle(Request request)
     {
+        var category = new Category
+        {
+            Title = request.Title,
+            Description = request.Description
+        };
+        
+        context.Categories.Add(category);
+        context.SaveChanges();
+            
         return new Response
         {
-            Id = 4,
-            Title = request.Title
+            Id = category.Id,
+            Title = category.Title
         };
     }
 }
