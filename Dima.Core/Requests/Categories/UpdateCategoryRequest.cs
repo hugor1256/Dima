@@ -2,8 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Dima.Core.Requests.Categories;
 
-public class UpdateCategoriesRequest : Request
+public class UpdateCategoryRequest : Request
 {
+    public long Id { get; set; }
     [Required(ErrorMessage = "Titulo Inválido")]
     [MaxLength(80, ErrorMessage = "O titulo deve conter no maximo 80 caracteres")]
     public string Title { get; set; } = string.Empty;
