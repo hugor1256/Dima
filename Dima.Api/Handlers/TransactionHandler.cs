@@ -83,9 +83,20 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
         }
     }
 
-    public Task<Response<Transaction?>> GetByIdAsync(GetTransactionByIdRequest request)
+    public async Task<Response<Transaction?>> GetByIdAsync(GetTransactionByIdRequest request)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var transaction = await context.Transactions.FirstOrDefaultAsync(s => s.Id == request.Id && s.UserId == request.UserId);
+            
+            return transaction == null 
+                ? new Response<Transaction?>(null, 404, "Transação não encontrada") 
+                : new Response<Transaction?>(transaction);
+        }
+        catch
+        {
+            return new Response<Transaction?>(null, 500, "Não foi possivel deletar sua transação");
+        }
     }
 
     public Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionsByPeriodRequest request)
