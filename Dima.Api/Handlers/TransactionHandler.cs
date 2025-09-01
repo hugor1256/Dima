@@ -1,5 +1,6 @@
 using System.Transactions;
 using Dima.Api.Data;
+using Dima.Core.Common.Extensions;
 using Dima.Core.Handlers;
 using Dima.Core.Requests.Transactions;
 using Dima.Core.Responses;
@@ -99,8 +100,39 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
         }
     }
 
-    public Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionsByPeriodRequest request)
+    public async Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionsByPeriodRequest request)
     {
-        throw new NotImplementedException();
+        try
+        {
+            request.StartDate ??= DateTime.Now.GetFirstDay();
+            request.EndDate ??= DateTime.Now.GetLastDay();
+        }
+        catch
+        {
+            return new PagedResponse<List<Transaction>?>(null, 500, "Não foi possivel determinar a data de inicio ou termino");
+        }
+
+        try
+        {
+            var query = context.Transactions.AsNoTracking()
+                .Where(s =>
+                    s.CreatedAt >= request.StartDate &&
+                    s.CreatedAt <= request.EndDate &&
+                    s.UserId == request.UserId)
+                .OrderBy(s => s.CreatedAt);
+        
+            var transaction = await query
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
+        
+            var count = await query.CountAsync();
+        
+            return new PagedResponse<List<Transaction>?>(transaction, count, request.PageNumber, request.PageSize);
+        }
+        catch
+        {
+            return new PagedResponse<List<Transaction>?>(null, 500, "Não foi possivel obter as transações");
+        }
     }
 }
