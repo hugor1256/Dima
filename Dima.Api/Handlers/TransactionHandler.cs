@@ -47,11 +47,11 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
             if (transaction == null )
                 return new Response<Transaction?>(null, 404, "Transação não encontrada");
             
-            transaction.CategoryId = transaction.CategoryId;
-            transaction.Amount = transaction.Amount;
-            transaction.PaidOrReceivedAt = transaction.PaidOrReceivedAt;
-            transaction.Title = transaction.Title;
-            transaction.Type = transaction.Type;
+            transaction.CategoryId = request.CategoryId;
+            transaction.Amount = request.Amount;
+            transaction.PaidOrReceivedAt = request.PaidOrReceivedAt;
+            transaction.Title = request.Title;
+            transaction.Type = request.Type;
             
             context.Transactions.Update(transaction);
             await context.SaveChangesAsync();

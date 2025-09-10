@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(x => { x.UseSqlServer(cnnStr); });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
+builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
 builder.Services.AddSwaggerGen(s =>
     s.CustomSchemaIds(t => t.FullName));
 
