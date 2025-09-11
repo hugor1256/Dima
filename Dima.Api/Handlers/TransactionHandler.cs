@@ -5,6 +5,7 @@ using Dima.Core.Handlers;
 using Dima.Core.Requests.Transactions;
 using Dima.Core.Responses;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using Transaction = Dima.Core.Models.Transaction;
 
 namespace Dima.Api.Handlers;
@@ -32,8 +33,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
         
             return new Response<Transaction?>(transaction, 201, "Transação criada com sucesso");
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao criar a transaçao. request: {@request}", request);
             return new Response<Transaction?>(null, 500, "Não foi possivel criar sua transação");
         }
     }
@@ -58,8 +60,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
             
             return new Response<Transaction?>(transaction);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao atualizar a transaçao. request: {@request}", request);
             return new Response<Transaction?>(null, 500, "Não foi possivel atualizar sua transação");
         }
     }
@@ -78,8 +81,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
 
             return new Response<Transaction?>(transaction);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao deletar a transaçao. request: {@request}", request);
             return new Response<Transaction?>(null, 500, "Não foi possivel deletar sua transação");
         }
     }
@@ -94,9 +98,10 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
                 ? new Response<Transaction?>(null, 404, "Transação não encontrada") 
                 : new Response<Transaction?>(transaction);
         }
-        catch
+        catch (Exception e)
         {
-            return new Response<Transaction?>(null, 500, "Não foi possivel deletar sua transação");
+            Log.Error(e, "Erro ao obter a transaçao. request: {@request}", request);
+            return new Response<Transaction?>(null, 500, "Não foi possivel obter sua transação");
         }
     }
 
@@ -107,8 +112,9 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
             request.StartDate ??= DateTime.Now.GetFirstDay();
             request.EndDate ??= DateTime.Now.GetLastDay();
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao determinar a data de inicio ou termino. request: {@request}", request);
             return new PagedResponse<List<Transaction>?>(null, 500, "Não foi possivel determinar a data de inicio ou termino");
         }
 
@@ -130,9 +136,10 @@ public class TransactionHandler(AppDbContext context) : ITransactionHandler
         
             return new PagedResponse<List<Transaction>?>(transaction, count, request.PageNumber, request.PageSize);
         }
-        catch
+        catch (Exception e)
         {
-            return new PagedResponse<List<Transaction>?>(null, 500, "Não foi possivel obter as transações");
+            Log.Error(e, "Erro ao obter as transaçoes. request: {@request}", request);
+            return new PagedResponse<List<Transaction>?>(null, 500, "Não foi possivel obter suas transações");
         }
     }
 }

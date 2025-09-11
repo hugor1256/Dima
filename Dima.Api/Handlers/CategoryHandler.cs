@@ -4,6 +4,7 @@ using Dima.Core.Models;
 using Dima.Core.Requests.Categories;
 using Dima.Core.Responses;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace Dima.Api.Handlers;
 
@@ -25,8 +26,10 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
         
             return new Response<Category?>(category);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao criar categoria. request: {@request}", request);
+
             return new Response<Category?>(null, 500, "Erro ao criar a categoria");
         }
     }
@@ -49,8 +52,9 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
             
             return new Response<Category?>(category, 201, "Categoria alterado com sucesso");
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao alterar categoria. request: {@request}", request);
             return new Response<Category?>(null, 500, "Erro ao alterar a categoria");
         }
     }
@@ -69,8 +73,9 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
             
             return new Response<Category?>(category, 200, "Categoria excluida com sucesso");
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao deletar categoria. request: {@request}", request);
             return new Response<Category?>(null, 500, "Erro excluir a categoria");
         }
     }
@@ -82,14 +87,15 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
             var category = await context.Categories.AsNoTracking().FirstOrDefaultAsync(s => s.Id == request.Id &&  s.UserId == request.UserId);
 
             return category == null
-                    ? new Response<Category?>(null, 404, "Categoria não encotrada")
-                    : new Response<Category?>(category);
+                ? new Response<Category?>(null, 404, "Categoria não encotrada")
+                : new Response<Category?>(category);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao buscar categoria. request: {@request}", request);
+
             return new Response<Category?>(null, 500, "Erro ao buscar a categria");
         }
-        
     }
 
     public async Task<PagedResponse<List<Category>>> GetAllAsync(GetAllCaregoriesRequest request)
@@ -110,8 +116,10 @@ public class CategoryHandler(AppDbContext context) : ICategoryHandler
         
             return new PagedResponse<List<Category>>(categories, count, request.PageNumber, request.PageSize);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Error(e, "Erro ao buscar categorias. request: {@request}", request);
+
             return new PagedResponse<List<Category>>(null, 500, "Erro ao buscar as categorias");
         }
     }
