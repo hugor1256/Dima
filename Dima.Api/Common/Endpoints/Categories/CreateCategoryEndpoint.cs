@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Azure;
 using Dima.Api.Common.Api;
 using Dima.Core.Handlers;
@@ -16,9 +17,12 @@ public class CreateCategoryEndpoint : IEndpoint
             .WithOrder(1)
             .Produces<Response<Category?>>();
 
-    private static async Task<IResult> HandleAsync( ICategoryHandler handler, CreateCategoriesRequest request)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
+        ICategoryHandler handler, 
+        CreateCategoriesRequest request)
     {
-        request.UserId = "novo3";
+        request.UserId = user.Identity?.Name ?? string.Empty;
         var result = await handler.CreateAsync(request);
         
         return result.IsSucess 

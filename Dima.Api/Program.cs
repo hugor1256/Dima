@@ -1,25 +1,29 @@
+using System.Security.Claims;
+using Dima.Api;
+using Dima.Api.Common.Api;
 using Dima.Api.Common.Endpoints;
-using Dima.Api.Data;
-using Dima.Api.Handlers;
-using Dima.Core.Handlers;
-using Microsoft.EntityFrameworkCore;
+using Dima.Api.Models;
+using Dima.Core;
+using Microsoft.AspNetCore.Identity;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var cnnStr = builder
-    .Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-
-builder.Services.AddDbContext<AppDbContext>(x => { x.UseSqlServer(cnnStr); });
+builder.AddConfiguration();
+builder.AddSecurity();
+builder.AddDataContexts();
+builder.AddCrossOrigin();
+builder.AddDocumentation();
+builder.AddServices();
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Is(LogEventLevel.Error)
     .Enrich.FromLogContext()
     .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Error)
     .WriteTo.MSSqlServer(
-        connectionString: cnnStr,
+        connectionString: Configurations.ConnectionString,
         sinkOptions: new MSSqlServerSinkOptions
         {
             TableName = "Logs",
@@ -31,19 +35,16 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(cnnStr));
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
-builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
-builder.Services.AddSwaggerGen(s =>
-    s.CustomSchemaIds(t => t.FullName));
-
 var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
 
-app.MapGet("/", () => new { message = "Ok" });
+if (app.Environment.IsDevelopment())
+{
+    app.ConfigureDevEnviroment();
+}
+
+app.UseCors(ApiConfiguration.CorsPolicyName);
+app.UseSecurity();
+
 app.MapEndpoints();
 
 app.Run();
