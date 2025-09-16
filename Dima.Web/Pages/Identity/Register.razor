@@ -1,4 +1,4 @@
-@page "/login"
+@page "/comecar"
 @layout HeadlessLayout
 
 <PageTitle>Dima - Entrar</PageTitle>
@@ -13,25 +13,25 @@
             <MudForm @ref="_mudForm">
                 <MudTextField
                     T="string"
-                    Label="E-mail"
+                    Placeholder="E-mail"
                     InputType="InputType.Email"
                     Required="true"
                     RequiredError="Informe o E-mail"
                     Validation="@(new EmailAddressAttribute { ErrorMessage = "E-mail inválido" })"
-                    />
+                />
 
                 <MudTextField
                     T="string"
-                    Label="Senha"
                     InputType="InputType.Password"
+                    Placeholder="Senha"
                     Required="true"
                     RequiredError="Senha inválida"/>
             </MudForm>
             
             <div class="d-flex mt-8">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary">ENTRAR</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary">COMEÇAR</MudButton>
                 <MudSpacer></MudSpacer>
-                <MudButton Href="/comecar">REGISTRAR</MudButton>
+                <MudButton Href="/login">JÁ TENHO UMA CONTA</MudButton>
             </div>    
             
         </MudPaper>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yDJYLqwWGwA=",
+  "dgSpecHash": "2Z7KR2SnqMc=",
   "success": true,
   "projectFilePath": "C:\\Git\\Dima\\Dima.Web\\Dima.Web.csproj",
   "expectedPackageFiles": [
@@ -30,10 +30,10 @@
     "C:\\Nuget\\microsoft.extensions.primitives\\9.0.8\\microsoft.extensions.primitives.9.0.8.nupkg.sha512",
     "C:\\Nuget\\microsoft.jsinterop\\9.0.8\\microsoft.jsinterop.9.0.8.nupkg.sha512",
     "C:\\Nuget\\microsoft.jsinterop.webassembly\\9.0.8\\microsoft.jsinterop.webassembly.9.0.8.nupkg.sha512",
-    "C:\\Nuget\\microsoft.net.illink.tasks\\9.0.8\\microsoft.net.illink.tasks.9.0.8.nupkg.sha512",
-    "C:\\Nuget\\microsoft.net.sdk.webassembly.pack\\9.0.8\\microsoft.net.sdk.webassembly.pack.9.0.8.nupkg.sha512",
+    "C:\\Nuget\\microsoft.net.illink.tasks\\9.0.9\\microsoft.net.illink.tasks.9.0.9.nupkg.sha512",
+    "C:\\Nuget\\microsoft.net.sdk.webassembly.pack\\9.0.9\\microsoft.net.sdk.webassembly.pack.9.0.9.nupkg.sha512",
     "C:\\Nuget\\mudblazor\\8.12.0\\mudblazor.8.12.0.nupkg.sha512",
-    "C:\\Nuget\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.8\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.8.nupkg.sha512"
+    "C:\\Nuget\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.9\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.9.nupkg.sha512"
   ],
   "logs": []
 }
