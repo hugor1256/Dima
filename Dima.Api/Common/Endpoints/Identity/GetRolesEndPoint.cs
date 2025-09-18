@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Dima.Api.Common.Api;
 using Dima.Api.Models;
+using Dima.Core.Models.Account;
 
 namespace Dima.Api.Common.Endpoints.Identity;
 
@@ -15,13 +16,13 @@ public class GetRolesEndPoint : IEndpoint
             return Task.FromResult(Results.Unauthorized());
 
         var identity = (ClaimsIdentity)user.Identity;
-        var roles = identity.FindAll(identity.RoleClaimType).Select(s => new
+        var roles = identity.FindAll(identity.RoleClaimType).Select(s => new RoleClaim
         {
-            s.Issuer,
-            s.OriginalIssuer,
-            s.Type,
-            s.Value,
-            s.ValueType
+            Issuer = s.Issuer,
+            OriginalIssuer = s.OriginalIssuer,
+            Type = s.Type,
+            Value = s.Value,
+            ValueType = s.ValueType
         });
 
         return Task.FromResult<IResult>(TypedResults.Json(roles));
